@@ -2,11 +2,11 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 
-const SelectOption = () => {
+const SelectOption = ({title}) => {
   const [selectedLanguage, setSelectedLanguage] = useState();
   return (
     <View>
-      <Text style={styles.label}>Select Option</Text>
+      <Text style={styles.label}>{title}</Text>
       <View style={styles.input}>
         <Picker
         // selectedValue={selectedLanguage}

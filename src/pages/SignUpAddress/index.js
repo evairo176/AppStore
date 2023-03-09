@@ -3,7 +3,7 @@ import React from 'react';
 import {Button, Gap, SelectOption, TextInput} from '../../components/atoms';
 import {Header} from '../../components/molecules';
 
-const SignUpAddress = () => {
+const SignUpAddress = ({navigation}) => {
   return (
     <View style={styles.page}>
       <Header
@@ -18,9 +18,16 @@ const SignUpAddress = () => {
         <Gap height={16} />
         <TextInput title="House No." placeholder="Type your house number" />
         <Gap height={16} />
-        <SelectOption />
+        <SelectOption title="City." />
         <Gap height={24} />
-        <Button title="Sign Up Now" bgColor="#FFC700" color="#020202" />
+        <Button
+          title="Sign Up Now"
+          bgColor="#FFC700"
+          color="#020202"
+          onPress={() => {
+            navigation.replace('SuccessSignUp');
+          }}
+        />
       </View>
     </View>
   );
