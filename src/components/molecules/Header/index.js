@@ -1,11 +1,22 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {IconBack} from '../../../assets';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const Header = ({title, description}) => {
+const Header = ({title, description, onBack}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.description}>{description}</Text>
+      {onBack && (
+        <TouchableOpacity activeOpacity={0.6}>
+          <View style={styles.back}>
+            <IconBack />
+          </View>
+        </TouchableOpacity>
+      )}
+      <View>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.description}>{description}</Text>
+      </View>
     </View>
   );
 };
@@ -18,6 +29,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 30,
     paddingBottom: 24,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  back: {
+    padding: 16,
+    marginRight: 16,
+    marginLeft: -10,
   },
   title: {
     fontSize: 22,
