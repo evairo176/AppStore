@@ -11,13 +11,14 @@ import {
   SplashScreen,
   SuccessSignUp,
 } from '../pages';
+import {ButtonNavigator} from '../components/molecules';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const MainApp = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator tabBar={props => <ButtonNavigator {...props} />}>
       <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
       <Tab.Screen
         name="Order"
