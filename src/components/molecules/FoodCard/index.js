@@ -36,10 +36,11 @@ const styles = StyleSheet.create({
       height: 7,
     },
     shadowOpacity: 0.5,
-    shadowRadius: 10,
-    elevation: 14,
+    shadowRadius: 5,
+    elevation: 10,
     overflow: 'hidden',
     marginRight: 24,
+    marginBottom: 24,
   },
   contentContainer: {
     padding: 12,

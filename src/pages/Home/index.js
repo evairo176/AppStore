@@ -5,7 +5,7 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import {TabView, SceneMap} from 'react-native-tab-view';
+import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import React from 'react';
 import {Image} from 'react-native';
 import {Food1, Food2, Food3, Food4, Food5, ImageHome} from '../../assets';
@@ -25,6 +25,26 @@ const renderScene = SceneMap({
   Popular: Popular,
   Recommended: Recommended,
 });
+
+const renderTabBar = props => (
+  <TabBar
+    {...props}
+    indicatorStyle={{
+      backgroundColor: '#020202',
+    }}
+    style={{backgroundColor: 'white'}}
+    tabStyle={{width: 'auto'}}
+    renderLabel={({route, focused, color}) => (
+      <Text
+        style={{
+          fontFamily: 'Poppins-Medium',
+          color: focused ? '#020202' : '8D92A3',
+        }}>
+        {route.title}
+      </Text>
+    )}
+  />
+);
 
 const Home = () => {
   const layout = useWindowDimensions();
@@ -60,6 +80,7 @@ const Home = () => {
       </View>
       <View style={styles.tabContainer}>
         <TabView
+          renderTabBar={renderTabBar}
           navigationState={{index, routes}}
           renderScene={renderScene}
           onIndexChange={setIndex}
@@ -105,6 +126,5 @@ const styles = StyleSheet.create({
   },
   foodCardContainer: {
     flexDirection: 'row',
-    padding: 10,
   },
 });
