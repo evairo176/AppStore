@@ -1,7 +1,9 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Image} from 'react-native';
-import {ImageHome} from '../../assets';
+import {Food1, Food2, Food3, Food4, Food5, ImageHome} from '../../assets';
+import {FoodCard} from '../../components/molecules';
+import {Gap} from '../../components/atoms';
 
 const Home = () => {
   return (
@@ -13,7 +15,17 @@ const Home = () => {
         </View>
         <Image source={ImageHome} style={styles.profile} />
       </View>
-      <Text>Home</Text>
+      <Gap height={24} />
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View style={styles.foodCardContainer}>
+          <Gap width={24} />
+          <FoodCard image={Food1} />
+          <FoodCard image={Food2} />
+          <FoodCard image={Food3} />
+          <FoodCard image={Food4} />
+          <FoodCard image={Food5} />
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -44,5 +56,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'Poppins-Light',
     color: '#8D92A3',
+  },
+  foodCardContainer: {
+    flexDirection: 'row',
+    padding: 10,
   },
 });
