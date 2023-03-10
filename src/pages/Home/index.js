@@ -1,13 +1,43 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from 'react-native';
+import {TabView, SceneMap} from 'react-native-tab-view';
 import React from 'react';
 import {Image} from 'react-native';
 import {Food1, Food2, Food3, Food4, Food5, ImageHome} from '../../assets';
 import {FoodCard} from '../../components/molecules';
 import {Gap} from '../../components/atoms';
 
+const NewTaste = () => <View style={{flex: 1, backgroundColor: '#ff4081'}} />;
+
+const Popular = () => <View style={{flex: 1, backgroundColor: '#673ab7'}} />;
+
+const Recommended = () => (
+  <View style={{flex: 1, backgroundColor: '#B7683A'}} />
+);
+
+const renderScene = SceneMap({
+  NewTaste: NewTaste,
+  Popular: Popular,
+  Recommended: Recommended,
+});
+
 const Home = () => {
+  const layout = useWindowDimensions();
+
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    {key: 'NewTaste', title: 'New Taste'},
+    {key: 'Popular', title: 'Popular'},
+    {key: 'Recommended', title: 'Recommended'},
+  ]);
+
   return (
-    <View>
+    <View style={styles.page}>
       <View style={styles.profileContainer}>
         <View>
           <Text style={styles.title}>FoodMarket</Text>
@@ -16,16 +46,26 @@ const Home = () => {
         <Image source={ImageHome} style={styles.profile} />
       </View>
       <Gap height={24} />
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <View style={styles.foodCardContainer}>
-          <Gap width={24} />
-          <FoodCard image={Food1} />
-          <FoodCard image={Food2} />
-          <FoodCard image={Food3} />
-          <FoodCard image={Food4} />
-          <FoodCard image={Food5} />
-        </View>
-      </ScrollView>
+      <View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <View style={styles.foodCardContainer}>
+            <Gap width={24} />
+            <FoodCard image={Food1} />
+            <FoodCard image={Food2} />
+            <FoodCard image={Food3} />
+            <FoodCard image={Food4} />
+            <FoodCard image={Food5} />
+          </View>
+        </ScrollView>
+      </View>
+      <View style={styles.tabContainer}>
+        <TabView
+          navigationState={{index, routes}}
+          renderScene={renderScene}
+          onIndexChange={setIndex}
+          initialLayout={{width: layout.width}}
+        />
+      </View>
     </View>
   );
 };
@@ -33,6 +73,12 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
+  page: {
+    flex: 1,
+  },
+  tabContainer: {
+    flex: 1,
+  },
   profile: {
     width: 50,
     height: 50,
