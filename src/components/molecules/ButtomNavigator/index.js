@@ -9,26 +9,50 @@ import {
   ActiveProfile,
 } from '../../../assets';
 
-const Icon = ({label, focus}) => {
+const Icon = ({label, focus, onPress}) => {
   switch (label) {
     case 'Home':
       if (focus === true) {
-        return <ActiveHome />;
+        return (
+          <View style={styles.navContainer(focus, onPress)}>
+            <ActiveHome />
+          </View>
+        );
       } else {
-        return <Home />;
+        return (
+          <View style={styles.navContainer(focus)}>
+            <Home />
+          </View>
+        );
       }
     case 'Order':
       if (focus === true) {
-        return <ActiveCart />;
+        return (
+          <View style={styles.navContainer(focus)}>
+            <ActiveCart />
+          </View>
+        );
       } else {
-        return <Cart />;
+        return (
+          <View style={styles.navContainer(focus)}>
+            <Cart />
+          </View>
+        );
       }
 
     case 'Profile':
       if (focus === true) {
-        return <ActiveProfile />;
+        return (
+          <View style={styles.navContainer(focus)}>
+            <ActiveProfile />
+          </View>
+        );
       } else {
-        return <Profile />;
+        return (
+          <View style={styles.navContainer(focus)}>
+            <Profile />
+          </View>
+        );
       }
   }
 };
@@ -77,7 +101,7 @@ const ButtonNavigator = ({state, descriptors, navigation}) => {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}>
-            <Icon label={label} focus={isFocused} />
+            <Icon label={label} focus={isFocused} onPress={onPress} />
           </TouchableOpacity>
         );
       })}
@@ -91,9 +115,22 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: 'white',
-    paddingTop: 15,
-    paddingBottom: 13,
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingHorizontal: 15,
     justifyContent: 'space-between',
     alignItems: 'center',
+    elevation: 20,
   },
+  navContainer: focus => ({
+    marginTop: focus ? -50 : 0,
+    backgroundColor: focus ? 'white' : 'transparent',
+    // borderColor: 'grey',
+    transition: 'all 0.3 ease-in-out',
+    borderRadius: 70,
+    width: 70,
+    height: 70,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }),
 });
