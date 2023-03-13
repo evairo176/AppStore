@@ -1,11 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const ItemValue = ({label, value}) => {
+const ItemValue = ({label, value, color = '#020202'}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
-      <Text style={styles.value}>{value}</Text>
+      <Text style={styles.value(color)}>{value}</Text>
     </View>
   );
 };
@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
     color: '#8D92A3',
     lineHeight: 21,
   },
-  value: {
+  value: color => ({
     fontSize: 14,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: color,
     lineHeight: 21,
-  },
+  }),
 });
