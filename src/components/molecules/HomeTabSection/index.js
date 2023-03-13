@@ -15,6 +15,27 @@ const NewTaste = () => {
         <ItemListFood
           image={Food1}
           onPress={() => navigation.navigate('FoodDetail')}
+          rating={4.6}
+        />
+        <ItemListFood
+          image={Food1}
+          onPress={() => navigation.navigate('FoodDetail')}
+          rating={4.6}
+        />
+        <ItemListFood
+          image={Food1}
+          onPress={() => navigation.navigate('FoodDetail')}
+          rating={4.6}
+        />
+        <ItemListFood
+          image={Food1}
+          onPress={() => navigation.navigate('FoodDetail')}
+          rating={4.6}
+        />
+        <ItemListFood
+          image={Food1}
+          onPress={() => navigation.navigate('FoodDetail')}
+          rating={4.6}
         />
       </ScrollView>
     </View>
@@ -30,6 +51,22 @@ const Popular = () => {
         <ItemListFood
           image={Food1}
           onPress={() => navigation.navigate('FoodDetail')}
+          rating={4.6}
+        />
+        <ItemListFood
+          image={Food1}
+          onPress={() => navigation.navigate('FoodDetail')}
+          rating={4.6}
+        />
+        <ItemListFood
+          image={Food1}
+          onPress={() => navigation.navigate('FoodDetail')}
+          rating={4.6}
+        />
+        <ItemListFood
+          image={Food1}
+          onPress={() => navigation.navigate('FoodDetail')}
+          rating={4.6}
         />
       </ScrollView>
     </View>
@@ -45,6 +82,17 @@ const Recommended = () => {
         <ItemListFood
           image={Food1}
           onPress={() => navigation.navigate('FoodDetail')}
+          rating={4.6}
+        />
+        <ItemListFood
+          image={Food1}
+          onPress={() => navigation.navigate('FoodDetail')}
+          rating={4.6}
+        />
+        <ItemListFood
+          image={Food1}
+          onPress={() => navigation.navigate('FoodDetail')}
+          rating={4.6}
         />
       </ScrollView>
     </View>
@@ -104,5 +152,6 @@ const styles = StyleSheet.create({
   page: {
     paddingTop: 8,
     flex: 1,
+    paddingHorizontal: 24,
   },
 });

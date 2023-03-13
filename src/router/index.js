@@ -11,6 +11,7 @@ import {
   SplashScreen,
   SuccessSignUp,
   FoodDetail,
+  OrderSummary,
 } from '../pages';
 import {ButtonNavigator} from '../components/molecules';
 
@@ -71,6 +72,11 @@ const Router = () => {
       <Stack.Screen
         name="FoodDetail"
         component={FoodDetail}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="OrderSummary"
+        component={OrderSummary}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

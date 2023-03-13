@@ -3,7 +3,7 @@ import React from 'react';
 import {ActiveStar, Star} from '../../../assets';
 import {Gap} from '../../atoms';
 
-const Rating = () => {
+const Rating = ({rating}) => {
   return (
     <View style={styles.ratingContainer}>
       <View style={styles.starContainer}>
@@ -14,7 +14,7 @@ const Rating = () => {
         <Star />
       </View>
       <Gap width={10} />
-      <Text style={styles.nilai}>4.5</Text>
+      <Text style={styles.nilai}>{rating}</Text>
     </View>
   );
 };

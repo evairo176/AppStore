@@ -11,11 +11,13 @@ import {BackWhite, Food6} from '../../assets';
 import {Counter, Rating} from '../../components/molecules';
 import {Button, Gap} from '../../components/atoms';
 
-const FoodDetail = () => {
+const FoodDetail = ({navigation}) => {
   return (
     <View style={styles.page}>
       <ImageBackground source={Food6} style={styles.cover}>
-        <TouchableOpacity style={styles.back}>
+        <TouchableOpacity
+          style={styles.back}
+          onPress={() => navigation.navigate('Home')}>
           <BackWhite />
         </TouchableOpacity>
       </ImageBackground>
@@ -48,7 +50,11 @@ const FoodDetail = () => {
             <Text style={styles.price}>IDR 12.289.000</Text>
           </View>
           <View style={styles.buttonContainer}>
-            <Button title="Order Now" bgColor="#FFC700" />
+            <Button
+              title="Order Now"
+              bgColor="#FFC700"
+              onPress={() => navigation.navigate('OrderSummary')}
+            />
           </View>
         </View>
       </View>
