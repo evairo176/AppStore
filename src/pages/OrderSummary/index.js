@@ -4,18 +4,18 @@ import {Header, ItemListFood, ItemValue} from '../../components/molecules';
 import {Food1} from '../../assets';
 import {Button, Gap} from '../../components/atoms';
 
-const OrderSummary = () => {
+const OrderSummary = ({navigation}) => {
   return (
     <View style={styles.page}>
       <Header
         title="Payment"
         description="You deserve better meal"
-        onBack={() => {}}
+        onBack={() => navigation.navigate('FoodDetail')}
       />
       <Gap height={24} />
       <View style={styles.orderDetailContainer}>
         <Text style={styles.title}>Item Ordered</Text>
-        <ItemListFood image={Food1} item={15} />
+        <ItemListFood image={Food1} item={15} padding={0} />
         <Text style={styles.title}>Details Transaction</Text>
         <ItemValue label="Cherry Healthy" value="IDR 18.390.000" />
         <ItemValue label="Driver" value="IDR 50.000" />

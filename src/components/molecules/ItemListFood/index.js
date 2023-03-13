@@ -2,10 +2,10 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Rating from '../Rating';
 
-const ItemListFood = ({image, onPress, item, rating}) => {
+const ItemListFood = ({image, onPress, item, rating, padding}) => {
   return (
     <TouchableOpacity activeOpacity={0.6} onPress={onPress}>
-      <View style={styles.foodContainer}>
+      <View style={styles.foodContainer(padding)}>
         <Image style={styles.image} source={image} />
         <View style={styles.insignContainer}>
           <View>
@@ -23,12 +23,13 @@ const ItemListFood = ({image, onPress, item, rating}) => {
 export default ItemListFood;
 
 const styles = StyleSheet.create({
-  foodContainer: {
+  foodContainer: padding => ({
     flexDirection: 'row',
+    paddingHorizontal: padding,
     paddingVertical: 8,
     backgroundColor: 'white',
     alignItems: 'center',
-  },
+  }),
   image: {
     height: 60,
     width: 60,

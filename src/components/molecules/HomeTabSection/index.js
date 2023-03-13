@@ -16,26 +16,31 @@ const NewTaste = () => {
           image={Food1}
           onPress={() => navigation.navigate('FoodDetail')}
           rating={4.6}
+          padding={24}
         />
         <ItemListFood
           image={Food1}
           onPress={() => navigation.navigate('FoodDetail')}
           rating={4.6}
+          padding={24}
         />
         <ItemListFood
           image={Food1}
           onPress={() => navigation.navigate('FoodDetail')}
           rating={4.6}
+          padding={24}
         />
         <ItemListFood
           image={Food1}
           onPress={() => navigation.navigate('FoodDetail')}
           rating={4.6}
+          padding={24}
         />
         <ItemListFood
           image={Food1}
           onPress={() => navigation.navigate('FoodDetail')}
           rating={4.6}
+          padding={24}
         />
       </ScrollView>
     </View>
@@ -52,21 +57,25 @@ const Popular = () => {
           image={Food1}
           onPress={() => navigation.navigate('FoodDetail')}
           rating={4.6}
+          padding={24}
         />
         <ItemListFood
           image={Food1}
           onPress={() => navigation.navigate('FoodDetail')}
           rating={4.6}
+          padding={24}
         />
         <ItemListFood
           image={Food1}
           onPress={() => navigation.navigate('FoodDetail')}
           rating={4.6}
+          padding={24}
         />
         <ItemListFood
           image={Food1}
           onPress={() => navigation.navigate('FoodDetail')}
           rating={4.6}
+          padding={24}
         />
       </ScrollView>
     </View>
@@ -78,23 +87,28 @@ const Recommended = () => {
 
   return (
     <View style={styles.page}>
-      <ScrollView>
-        <ItemListFood
-          image={Food1}
-          onPress={() => navigation.navigate('FoodDetail')}
-          rating={4.6}
-        />
-        <ItemListFood
-          image={Food1}
-          onPress={() => navigation.navigate('FoodDetail')}
-          rating={4.6}
-        />
-        <ItemListFood
-          image={Food1}
-          onPress={() => navigation.navigate('FoodDetail')}
-          rating={4.6}
-        />
-      </ScrollView>
+      <View style={styles.itemListContainer}>
+        <ScrollView>
+          <ItemListFood
+            image={Food1}
+            onPress={() => navigation.navigate('FoodDetail')}
+            rating={4.6}
+            padding={24}
+          />
+          <ItemListFood
+            image={Food1}
+            onPress={() => navigation.navigate('FoodDetail')}
+            rating={4.6}
+            padding={24}
+          />
+          <ItemListFood
+            image={Food1}
+            onPress={() => navigation.navigate('FoodDetail')}
+            rating={4.6}
+            padding={24}
+          />
+        </ScrollView>
+      </View>
     </View>
   );
 };
@@ -152,6 +166,5 @@ const styles = StyleSheet.create({
   page: {
     paddingTop: 8,
     flex: 1,
-    paddingHorizontal: 24,
   },
 });
