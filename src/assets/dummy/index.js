@@ -4,5 +4,6 @@ import Food2 from '.././dummy/Food2.png';
 import Food3 from '.././dummy/Food3.png';
 import Food4 from '.././dummy/Food4.png';
 import Food5 from '.././dummy/Food5.png';
+import Food6 from '.././dummy/Food6.png';
 
-export {ImageHome, Food1, Food2, Food3, Food4, Food5};
+export {ImageHome, Food1, Food2, Food3, Food4, Food5, Food6};

@@ -1,19 +1,21 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Rating from '../Rating';
 
-const ItemListFood = ({image}) => {
+const ItemListFood = ({image, onPress}) => {
   return (
-    <View style={styles.foodContainer}>
-      <Image style={styles.image} source={image} />
-      <View style={styles.insignContainer}>
-        <View>
-          <Text style={styles.title}>Soup Bumil</Text>
-          <Text style={styles.price}>IDR 289.000</Text>
+    <TouchableOpacity activeOpacity={0.6} onPress={onPress}>
+      <View style={styles.foodContainer}>
+        <Image style={styles.image} source={image} />
+        <View style={styles.insignContainer}>
+          <View>
+            <Text style={styles.title}>Soup Bumil</Text>
+            <Text style={styles.price}>IDR 289.000</Text>
+          </View>
+          <Rating />
         </View>
-        <Rating />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 24,
     paddingVertical: 8,
-    // backgroundColor: '#000',
+    backgroundColor: 'white',
     alignItems: 'center',
   },
   image: {

@@ -7,6 +7,9 @@ import Profile from '../icon/Profile.svg';
 import ActiveProfile from '../icon/ActiveProfile.svg';
 import ActiveStar from '../icon/ActiveStar.svg';
 import Star from '../icon/Star.svg';
+import BackWhite from '../icon/BackWhite.svg';
+import Add from '../icon/Add.svg';
+import Min from '../icon/Min.svg';
 
 export {
   IconBack,
@@ -18,4 +21,7 @@ export {
   ActiveProfile,
   ActiveStar,
   Star,
+  BackWhite,
+  Add,
+  Min,
 };

@@ -10,6 +10,7 @@ import {
   SignUpAddress,
   SplashScreen,
   SuccessSignUp,
+  FoodDetail,
 } from '../pages';
 import {ButtonNavigator} from '../components/molecules';
 
@@ -65,6 +66,11 @@ const Router = () => {
       <Stack.Screen
         name="MainApp"
         component={MainApp}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="FoodDetail"
+        component={FoodDetail}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

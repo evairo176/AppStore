@@ -4,49 +4,52 @@ import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import ItemListFood from '../ItemListFood';
 import {Food1} from '../../../assets';
 import {} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
 
-const NewTaste = () => (
-  <View style={styles.page}>
-    <ScrollView>
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-    </ScrollView>
-  </View>
-);
+const NewTaste = () => {
+  const navigation = useNavigation();
 
-const Popular = () => (
-  <View style={styles.page}>
-    <ScrollView>
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-    </ScrollView>
-  </View>
-);
+  return (
+    <View style={styles.page}>
+      <ScrollView>
+        <ItemListFood
+          image={Food1}
+          onPress={() => navigation.navigate('FoodDetail')}
+        />
+      </ScrollView>
+    </View>
+  );
+};
 
-const Recommended = () => (
-  <View style={styles.page}>
-    <ScrollView>
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-      <ItemListFood image={Food1} />
-    </ScrollView>
-  </View>
-);
+const Popular = () => {
+  const navigation = useNavigation();
+
+  return (
+    <View style={styles.page}>
+      <ScrollView>
+        <ItemListFood
+          image={Food1}
+          onPress={() => navigation.navigate('FoodDetail')}
+        />
+      </ScrollView>
+    </View>
+  );
+};
+
+const Recommended = () => {
+  const navigation = useNavigation();
+
+  return (
+    <View style={styles.page}>
+      <ScrollView>
+        <ItemListFood
+          image={Food1}
+          onPress={() => navigation.navigate('FoodDetail')}
+        />
+      </ScrollView>
+    </View>
+  );
+};
 
 const renderScene = SceneMap({
   NewTaste: NewTaste,
@@ -61,7 +64,7 @@ const renderTabBar = props => (
       backgroundColor: '#020202',
     }}
     style={{backgroundColor: 'white'}}
-    // tabStyle={{width: 'auto'}}
+    tabStyle={{width: 'auto'}}
     renderLabel={({route, focused, color}) => (
       <Text
         style={{
@@ -90,6 +93,7 @@ const HomeTabSection = () => {
       renderScene={renderScene}
       onIndexChange={setIndex}
       initialLayout={initialLayout}
+      styles={{backgroundColor: 'white'}}
     />
   );
 };
