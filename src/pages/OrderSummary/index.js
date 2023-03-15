@@ -15,7 +15,12 @@ const OrderSummary = ({navigation}) => {
       <Gap height={24} />
       <View style={styles.orderDetailContainer}>
         <Text style={styles.title}>Item Ordered</Text>
-        <ItemListFood image={Food1} item={15} padding={0} />
+        <ItemListFood
+          image={Food1}
+          item={15}
+          padding={0}
+          type="order-summary"
+        />
         <Text style={styles.title}>Details Transaction</Text>
         <ItemValue label="Cherry Healthy" value="IDR 18.390.000" />
         <ItemValue label="Driver" value="IDR 50.000" />
