@@ -3,7 +3,7 @@ import React from 'react';
 import {Button, Gap} from '../../components/atoms';
 import {SuccessOrder as ImSuccess} from '../../assets';
 
-const SuccessOrder = () => {
+const SuccessOrder = ({navigation}) => {
   return (
     <View style={styles.page}>
       <ImSuccess style={styles.ImageSuccess} />
@@ -26,7 +26,7 @@ const SuccessOrder = () => {
           bgColor="#8D92A3"
           color="white"
           onPress={() => {
-            navigation.replace('MainApp');
+            navigation.replace('MainApp', {screen: 'Order'});
           }}
         />
       </View>

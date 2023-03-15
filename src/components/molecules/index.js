@@ -10,6 +10,8 @@ import ItemValue from './ItemValue';
 import EmptyOrder from './EmptyOrder';
 import OrderTabSection from './OrderTabSection';
 import ProfileTabSection from './ProfileTabSection';
+import ItemListMenu from './ItemListMenu';
+import TextError from './TextError';
 
 export {
   Header,
@@ -24,4 +26,6 @@ export {
   EmptyOrder,
   OrderTabSection,
   ProfileTabSection,
+  ItemListMenu,
+  TextError
 };

@@ -4,7 +4,7 @@ import {EmptyOrder, Header, OrderTabSection} from '../../components/molecules';
 import {Gap} from '../../components/atoms';
 
 const Order = () => {
-  const isEmpty = false;
+  const isEmpty = true;
   return (
     <View style={styles.page}>
       {isEmpty ? (
@@ -14,7 +14,7 @@ const Order = () => {
           <Header title="Your Orders" description="Wait for the best meal" />
           <Gap height={24} />
           <View style={styles.tabContainer}>
-            <OrderTabSection  />
+            <OrderTabSection />
           </View>
         </View>
       )}

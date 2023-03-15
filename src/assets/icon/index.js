@@ -10,6 +10,7 @@ import Star from '../icon/Star.svg';
 import BackWhite from '../icon/BackWhite.svg';
 import Add from '../icon/Add.svg';
 import Min from '../icon/Min.svg';
+import ArrowRight from '../icon/ArrowRight.svg';
 
 export {
   IconBack,
@@ -24,4 +25,5 @@ export {
   BackWhite,
   Add,
   Min,
+  ArrowRight,
 };

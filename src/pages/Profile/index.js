@@ -2,19 +2,25 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
 import {ProfileDummy} from '../../assets/dummy/index';
 import {ProfileTabSection} from '../../components/molecules';
+import {Gap} from '../../components/atoms';
 
 const Profile = () => {
   return (
     <View style={styles.page}>
-      <View style={styles.photo}>
-        <View style={styles.borderPhoto}>
-          <Image source={ProfileDummy} style={styles.photoContainer} />
+      <View style={styles.pContainer}>
+        <View style={styles.photo}>
+          <View style={styles.borderPhoto}>
+            <Image source={ProfileDummy} style={styles.photoContainer} />
+          </View>
         </View>
+        <Text style={styles.name}>Angga Risky</Text>
+        <Text style={styles.email}>wepanda@gmail.com</Text>
+        <Gap height={30} />
       </View>
-      <Text style={styles.name}>Angga Risky</Text>
-      <Text style={styles.email}>wepanda@gmail.com</Text>
-      <Gap height={50} />
-      <ProfileTabSection />
+      <Gap height={30} />
+      <View style={styles.tabContainer}>
+        <ProfileTabSection />
+      </View>
     </View>
   );
 };
@@ -23,8 +29,14 @@ export default Profile;
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: 'white',
     flex: 1,
+  },
+  tabContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  pContainer: {
+    backgroundColor: 'white',
   },
   photo: {
     alignItems: 'center',

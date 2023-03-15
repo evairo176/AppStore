@@ -5,43 +5,28 @@ import ItemListFood from '../ItemListFood';
 import {Food1} from '../../../assets';
 import {} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
+import ItemListMenu from '../ItemListMenu';
 
 const Account = () => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.page}>
-      <ScrollView>
-        <ItemListFood
-          image={Food1}
-          padding={24}
-          items={25}
-          price={500000}
-          type="in-progress"
-          onPress={() => navigation.navigate('OrderDetail')}
-        />
-      </ScrollView>
+      <ItemListMenu label="Edit Profile" />
+      <ItemListMenu label="Home Address" />
+      <ItemListMenu label="Security" />
+      <ItemListMenu label="Payments" />
     </View>
   );
 };
 
 const FoodMarket = () => {
-  const navigation = useNavigation();
-
   return (
     <View style={styles.page}>
-      <ScrollView>
-        <ItemListFood
-          image={Food1}
-          padding={24}
-          items={21}
-          price={700000}
-          type="past-orders"
-          date="Jun 12, 14:00"
-          status="cancelled"
-          colorStatus="#D9435E"
-        />
-      </ScrollView>
+      <ItemListMenu label="Rate App" />
+      <ItemListMenu label="Help Center" />
+      <ItemListMenu label="Privacy & Policy" />
+      <ItemListMenu label="Terms & Conditions" />
     </View>
   );
 };
@@ -95,7 +80,8 @@ export default ProfileTabSection;
 
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 8,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
     flex: 1,
   },
 });

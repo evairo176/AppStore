@@ -9,7 +9,9 @@ const SignUp = ({navigation}) => {
       <Header
         title="Sign Up"
         description="Register and eat"
-        onBack={() => {}}
+        onBack={() => {
+          navigation.navigate('SignIn');
+        }}
       />
       <View style={styles.container}>
         <View style={styles.photo}>
