@@ -4,20 +4,16 @@ import {Header, TextError} from '../../components/molecules';
 import {TextInput, Button, Gap} from '../../components/atoms';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginAction, setRegister } from '../../redux/slices/UserSlices';
-
-
-
+import {useDispatch, useSelector} from 'react-redux';
 
 const formSchema = Yup.object({
   email: Yup.string().email('Email is not valid').required('Email is required'),
   password: Yup.string().required('Lokasi is required'),
 });
 const SignIn = ({navigation}) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const storeData = useSelector(store => store?.users);
-  console.log('state',storeData);
+  console.log('state', storeData);
 
   const formik = useFormik({
     initialValues: {
@@ -25,7 +21,6 @@ const SignIn = ({navigation}) => {
       password: '',
     },
     onSubmit: values => {
-      dispatch(setRegister(s));
       console.log(values);
     },
     validationSchema: formSchema,
@@ -42,7 +37,7 @@ const SignIn = ({navigation}) => {
           value={formik.values.email}
         />
         {formik.touched.email && formik.errors.email ? (
-          <TextError value={formik.errors.email}/>
+          <TextError value={formik.errors.email} />
         ) : (
           ''
         )}
@@ -54,7 +49,7 @@ const SignIn = ({navigation}) => {
           value={formik.values.password}
         />
         {formik.touched.password && formik.errors.password ? (
-        <TextError value={formik.errors.password}/>
+          <TextError value={formik.errors.password} />
         ) : (
           ''
         )}
