@@ -10,6 +10,7 @@ import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {setRegister} from '../../redux/slices/AuthSlices';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {showMessage} from '../../utils';
+import {setPhotoAction} from '../../redux/slices/PhotoSlices';
 
 const formSchema = Yup.object({
   name: Yup.string().required('Fullname is required'),
@@ -26,7 +27,6 @@ const formSchema = Yup.object({
 const SignUp = ({navigation}) => {
   const dispatch = useDispatch();
   const [photo, setPhoto] = useState('');
-  const storeData = useSelector(store => store?.auth);
 
   const addPhoto = async () => {
     await launchImageLibrary(
@@ -57,6 +57,8 @@ const SignUp = ({navigation}) => {
 
           setPhoto(source);
           showMessage('Add photo successfully', 'success');
+          dispatch(setPhotoAction({type: 'SET_PHOTO', value: dataImage}));
+          dispatch(setPhotoAction({type: 'SET_UPLOAD_STATUS', value: true}));
         }
       },
     );

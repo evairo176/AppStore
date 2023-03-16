@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 import {globalAction} from '../../redux/slices/GlobalSlices';
+import {showMessage} from '../../utils';
 
 const formSchema = Yup.object({
   address: Yup.string().required('address is required'),
@@ -19,6 +20,8 @@ const formSchema = Yup.object({
 const SignUpAddress = ({navigation}) => {
   const dispatch = useDispatch();
   const setRegister = useSelector(store => store?.auth);
+  const storePhoto = useSelector(store => store?.photo);
+  console.log(storePhoto);
 
   const formik = useFormik({
     initialValues: {
@@ -32,20 +35,46 @@ const SignUpAddress = ({navigation}) => {
         ...setRegister,
         ...values,
       };
+
       dispatch(globalAction({type: 'SET_LOADING', value: true}));
       const url = `https://foodmarket-backend.buildwithangga.id/api/register`;
       await axios
         .post(url, form)
         .then(result => {
           console.log(result);
+
+          if (storePhoto.isUploadPhoto) {
+            const photoForUpload = new FormData();
+            photoForUpload.append('file', storePhoto);
+
+            axios
+              .post(
+                `https://foodmarket-backend.buildwithangga.id/api/user/photo`,
+                photoForUpload,
+                {
+                  headers: {
+                    Authorization: `${result.data.data.token_type} ${result.data.data.access_token}`,
+                    'Content-Type': `multipart/form-data`,
+                  },
+                },
+              )
+              .then(resUpload => {
+                console.log(resUpload);
+              })
+              .catch(errUpload => {
+                console.log(errUpload);
+                showMessage('Upload error');
+              });
+          }
+
           dispatch(globalAction({type: 'SET_LOADING', value: false}));
-          showToast('Create account successfully', 'success');
+          showMessage('Create account successfully', 'success');
           navigation.replace('SuccessSignUp');
         })
         .catch(err => {
           console.log(err);
           dispatch(globalAction({type: 'SET_LOADING', value: false}));
-          showToast(err?.response?.data?.message);
+          showMessage(err?.response?.data?.message);
         });
     },
     validationSchema: formSchema,
