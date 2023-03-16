@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import {showMessage, hideMessage} from 'react-native-flash-message';
+
 import {globalAction} from '../../redux/slices/GlobalSlices';
 
 const formSchema = Yup.object({
@@ -50,14 +50,6 @@ const SignUpAddress = ({navigation}) => {
     },
     validationSchema: formSchema,
   });
-
-  const showToast = (message, type) => {
-    showMessage({
-      message: message,
-      type: type === 'success' ? 'success' : 'danger',
-      backgroundColor: type === 'success' ? '#1ABC9C' : '#D9435E',
-    });
-  };
 
   return (
     <View style={styles.page}>

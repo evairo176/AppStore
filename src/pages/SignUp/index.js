@@ -1,13 +1,15 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {StyleSheet, Text, View, Image} from 'react-native';
+import React, {useState} from 'react';
 import {Header, TextError} from '../../components/molecules';
 import {Button, Gap, TextInput} from '../../components/atoms';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 
 import {useDispatch, useSelector} from 'react-redux';
-import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {setRegister} from '../../redux/slices/AuthSlices';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {showMessage} from '../../utils';
 
 const formSchema = Yup.object({
   name: Yup.string().required('Fullname is required'),
@@ -23,7 +25,42 @@ const formSchema = Yup.object({
 });
 const SignUp = ({navigation}) => {
   const dispatch = useDispatch();
+  const [photo, setPhoto] = useState('');
   const storeData = useSelector(store => store?.auth);
+
+  const addPhoto = async () => {
+    await launchImageLibrary(
+      {
+        quality: 0.5,
+        maxHeight: 200,
+        maxWidth: 200,
+      },
+      response => {
+        console.log('response:', response);
+
+        if (response.didCancel) {
+          console.log('user cancelled imaged picker');
+          showMessage('user cancelled imaged picker');
+        } else if (response.error) {
+          console.log('image picker error:', response.error);
+          showMessage(response.error);
+        } else if (response.customButton) {
+          showMessage(response.customButton);
+          console.log('custom button', response.customButton);
+        } else {
+          const source = {uri: response.assets[0].uri};
+          const dataImage = {
+            uri: response.assets[0].uri,
+            type: response.assets[0].type,
+            name: response.assets[0].fileName,
+          };
+
+          setPhoto(source);
+          showMessage('Add photo successfully', 'success');
+        }
+      },
+    );
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -51,12 +88,19 @@ const SignUp = ({navigation}) => {
         />
         <View style={styles.container}>
           <View style={styles.photo}>
-            <View style={styles.borderPhoto}>
-              <View style={styles.photoContainer}>
-                <Text style={styles.addPhoto}>Add Photo</Text>
+            <TouchableOpacity onPress={addPhoto}>
+              <View style={styles.borderPhoto}>
+                {photo ? (
+                  <Image source={photo} style={styles.photoContainer} />
+                ) : (
+                  <View style={styles.photoContainer}>
+                    <Text style={styles.addPhoto}>Add Photo</Text>
+                  </View>
+                )}
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
+          <Text></Text>
           <TextInput
             title="Full Name"
             placeholder="Type Your Full Name"
