@@ -37,6 +37,7 @@ const signUpAction = (dataRegister, photoReducer, navigation) => dispatch => {
             profile.profile_photo_url = `https://foodmarket-backend.buildwithangga.id/storage/${resUpload.data.data[0]}`;
             // console.log('hasil:' resUpload);
             storeData('userProfile', profile);
+            showMessage('Register Successfully', 'success');
             navigation.reset({index: 0, routes: [{name: 'SuccessSignUp'}]});
           })
           .catch(errUpload => {
@@ -58,4 +59,29 @@ const signUpAction = (dataRegister, photoReducer, navigation) => dispatch => {
     });
 };
 
-export {signUpAction};
+const signInAction = (dataRegister, navigation) => dispatch => {
+  const url = `${API_HOST.url}/login`;
+  axios
+    .post(url, dataRegister)
+    .then(result => {
+      //save to local storage
+      const token = `${result.data.data.token_type} ${result.data.data.access_token}`;
+      const profile = result.data.data.user;
+
+      storeData('token', {
+        value: token,
+      });
+      storeData('userProfile', profile);
+
+      dispatch(setLoading(false));
+      showMessage('Login Successfully', 'success');
+      navigation.reset({index: 0, routes: [{name: 'MainApp'}]});
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch(setLoading(false));
+      showMessage(err?.response?.data?.data?.message);
+    });
+};
+
+export {signUpAction, signInAction};

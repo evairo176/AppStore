@@ -1,11 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Header, TextError} from '../../components/molecules';
 import {TextInput, Button, Gap} from '../../components/atoms';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
-import {useDispatch, useSelector} from 'react-redux';
-import {registerAuthAction} from '../../redux/slices/AuthSlices';
+import {useDispatch} from 'react-redux';
+
+import {signInAction} from '../../redux/action/AuthAction';
+import {setLoading} from '../../redux/action/GlobalAction';
+import {getData} from '../../utils/storage';
 
 const formSchema = Yup.object({
   email: Yup.string().email('Email is not valid').required('Email is required'),
@@ -13,7 +16,6 @@ const formSchema = Yup.object({
 });
 const SignIn = ({navigation}) => {
   const dispatch = useDispatch();
-  const storeData = useSelector(store => store);
 
   const formik = useFormik({
     initialValues: {
@@ -21,7 +23,8 @@ const SignIn = ({navigation}) => {
       password: '',
     },
     onSubmit: values => {
-      dispatch(registerAuthAction(values));
+      dispatch(setLoading(true));
+      dispatch(signInAction(values, navigation));
     },
     validationSchema: formSchema,
   });

@@ -6,9 +6,16 @@ import {Food1} from '../../../assets';
 import {} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 import ItemListMenu from '../ItemListMenu';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Account = () => {
   const navigation = useNavigation();
+
+  const signOut = () => {
+    AsyncStorage.multiRemove(['userProfile', 'token']).then(res => {
+      navigation.reset({index: 0, routes: [{name: 'SignIn'}]});
+    });
+  };
 
   return (
     <View style={styles.page}>
@@ -16,6 +23,7 @@ const Account = () => {
       <ItemListMenu label="Home Address" />
       <ItemListMenu label="Security" />
       <ItemListMenu label="Payments" />
+      <ItemListMenu label="Sign Out" onPress={signOut} />
     </View>
   );
 };

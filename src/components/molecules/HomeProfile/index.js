@@ -1,6 +1,7 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {getData} from '../../../utils/storage';
+import {Food1} from '../../../assets';
 
 const HomeProfile = ({image}) => {
   const [photo, setPhoto] = useState('');
@@ -19,7 +20,7 @@ const HomeProfile = ({image}) => {
         <Text style={styles.title}>FoodMarket</Text>
         <Text style={styles.subtitle}>Let’s get some foods</Text>
       </View>
-      <Image source={photo} style={styles.profile} />
+      <Image source={photo ? photo : Food1} style={styles.profile} />
     </View>
   );
 };
