@@ -17,7 +17,7 @@ const SuccessSignUp = ({navigation}) => {
           bgColor="#FFC700"
           color="#020202"
           onPress={() => {
-            navigation.replace('MainApp');
+            navigation.reset({index: 0, routes: [{name: 'MainApp'}]});
           }}
         />
       </View>

@@ -5,6 +5,7 @@ import {TextInput, Button, Gap} from '../../components/atoms';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import {useDispatch, useSelector} from 'react-redux';
+import {registerAuthAction} from '../../redux/slices/AuthSlices';
 
 const formSchema = Yup.object({
   email: Yup.string().email('Email is not valid').required('Email is required'),
@@ -12,8 +13,7 @@ const formSchema = Yup.object({
 });
 const SignIn = ({navigation}) => {
   const dispatch = useDispatch();
-  const storeData = useSelector(store => store?.users);
-  console.log('state', storeData);
+  const storeData = useSelector(store => store);
 
   const formik = useFormik({
     initialValues: {
@@ -21,7 +21,7 @@ const SignIn = ({navigation}) => {
       password: '',
     },
     onSubmit: values => {
-      console.log(values);
+      dispatch(registerAuthAction(values));
     },
     validationSchema: formSchema,
   });

@@ -1,14 +1,12 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Button, Gap, SelectOption, TextInput} from '../../components/atoms';
 import {Header, TextError} from '../../components/molecules';
 import {useDispatch, useSelector} from 'react-redux';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
-
-import {globalAction} from '../../redux/slices/GlobalSlices';
-import {showMessage} from '../../utils';
+import {setLoading} from '../../redux/action/GlobalAction';
+import {signUpAction} from '../../redux/action/AuthAction';
 
 const formSchema = Yup.object({
   address: Yup.string().required('address is required'),
@@ -21,7 +19,6 @@ const SignUpAddress = ({navigation}) => {
   const dispatch = useDispatch();
   const setRegister = useSelector(store => store?.auth);
   const storePhoto = useSelector(store => store?.photo);
-  console.log(storePhoto);
 
   const formik = useFormik({
     initialValues: {
@@ -36,46 +33,8 @@ const SignUpAddress = ({navigation}) => {
         ...values,
       };
 
-      dispatch(globalAction({type: 'SET_LOADING', value: true}));
-      const url = `https://foodmarket-backend.buildwithangga.id/api/register`;
-      await axios
-        .post(url, form)
-        .then(result => {
-          console.log(result);
-
-          if (storePhoto.isUploadPhoto) {
-            const photoForUpload = new FormData();
-            photoForUpload.append('file', storePhoto);
-
-            axios
-              .post(
-                `https://foodmarket-backend.buildwithangga.id/api/user/photo`,
-                photoForUpload,
-                {
-                  headers: {
-                    Authorization: `${result.data.data.token_type} ${result.data.data.access_token}`,
-                    'Content-Type': `multipart/form-data`,
-                  },
-                },
-              )
-              .then(resUpload => {
-                console.log(resUpload);
-              })
-              .catch(errUpload => {
-                console.log(errUpload);
-                showMessage('Upload error');
-              });
-          }
-
-          dispatch(globalAction({type: 'SET_LOADING', value: false}));
-          showMessage('Create account successfully', 'success');
-          navigation.replace('SuccessSignUp');
-        })
-        .catch(err => {
-          console.log(err);
-          dispatch(globalAction({type: 'SET_LOADING', value: false}));
-          showMessage(err?.response?.data?.message);
-        });
+      dispatch(setLoading(true));
+      dispatch(signUpAction(form, storePhoto, navigation));
     },
     validationSchema: formSchema,
   });
