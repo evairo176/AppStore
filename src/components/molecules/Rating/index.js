@@ -9,9 +9,9 @@ const Rating = ({rating}) => {
 
     for (let i = 1; i <= 5; i++) {
       if (i <= rating) {
-        stars.push(<ActiveStar />);
+        stars.push(<ActiveStar key={i} />);
       } else {
-        stars.push(<Star />);
+        stars.push(<Star key={i} />);
       }
     }
     return stars;
