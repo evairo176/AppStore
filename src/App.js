@@ -1,6 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {View} from 'react-native';
 import {Provider, useSelector} from 'react-redux';
 import store from './redux/store/store';
@@ -15,12 +15,12 @@ const MainApp = () => {
   const {isLoading} = storeData;
   return (
     <NavigationContainer>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Router />
         <FlashMessage position="top" />
         {isLoading && <Loading />}
         {/* types success, warning, info and danger */}
-      </View>
+      </SafeAreaView>
     </NavigationContainer>
   );
 };

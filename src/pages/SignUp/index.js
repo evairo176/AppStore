@@ -194,7 +194,6 @@ const styles = StyleSheet.create({
     borderRadius: 90,
     backgroundColor: '#F0F0F0',
     padding: 24,
-    textAlign: 'center',
   },
   borderPhoto: {
     borderWidth: 1,

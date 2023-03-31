@@ -1,4 +1,4 @@
-import {createAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const GlobalSlices = createSlice({
   name: 'global',
