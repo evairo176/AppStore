@@ -7,7 +7,7 @@ import {
   Text,
 } from 'react-native';
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Food1, Food2, Food3, Food4, Food5, ImageHome} from '../../assets';
 
 import {
@@ -16,30 +16,44 @@ import {
   HomeTabSection,
 } from '../../components/molecules';
 import {Gap} from '../../components/atoms';
+import {useDispatch, useSelector} from 'react-redux';
+import {getFoodData} from '../../redux/action/HomeAction';
+import store from '../../redux/store/store';
 
 const Home = () => {
-  const fawfaw = {height: Dimensions.get('window').height};
+  const dispatch = useDispatch();
+  const storeData = useSelector(store => store?.home);
+  const {food} = storeData;
+
+  console.log(food);
+  useEffect(() => {
+    dispatch(getFoodData());
+  }, [dispatch]);
+
   return (
     <View style={styles.page}>
-      <ScrollView contentContainerStyle={{flexGrow: 1}}>
-        <HomeProfile image={ImageHome} />
-        <Gap height={24} />
-        <View>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View style={styles.foodCardContainer}>
-              <Gap width={24} />
-              <FoodCard image={Food1} />
-              <FoodCard image={Food2} />
-              <FoodCard image={Food3} />
-              <FoodCard image={Food4} />
-              <FoodCard image={Food5} />
-            </View>
-          </ScrollView>
-        </View>
-        <View style={styles.tabContainer}>
-          <HomeTabSection />
-        </View>
-      </ScrollView>
+      <HomeProfile image={ImageHome} />
+      <Gap height={24} />
+      <View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <View style={styles.foodCardContainer}>
+            <Gap width={24} />
+            {food?.map((row, key) => {
+              return (
+                <FoodCard
+                  key={key}
+                  name={row?.name}
+                  image={{uri: row?.picturePath}}
+                  rating={row?.rate}
+                />
+              );
+            })}
+          </View>
+        </ScrollView>
+      </View>
+      <View style={styles.tabContainer}>
+        <HomeTabSection />
+      </View>
     </View>
   );
 };
