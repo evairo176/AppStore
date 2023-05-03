@@ -4,6 +4,9 @@ const HomeSlices = createSlice({
   name: 'home',
   initialState: {
     food: [],
+    newTaste: [],
+    popular: [],
+    recommended: [],
   },
   reducers: {
     homeAction: (state, action) => {
@@ -11,6 +14,24 @@ const HomeSlices = createSlice({
         return {
           ...state,
           food: action.payload.value,
+        };
+      }
+      if (action.payload.type === 'SET_NEW_TASTE') {
+        return {
+          ...state,
+          newTaste: action.payload.value,
+        };
+      }
+      if (action.payload.type === 'SET_POPULAR') {
+        return {
+          ...state,
+          popular: action.payload.value,
+        };
+      }
+      if (action.payload.type === 'SET_RECOMMENDED') {
+        return {
+          ...state,
+          recommended: action.payload.value,
         };
       }
     },

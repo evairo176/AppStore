@@ -13,6 +13,7 @@ import ProfileTabSection from './ProfileTabSection';
 import ItemListMenu from './ItemListMenu';
 import TextError from './TextError';
 import Loading from './Loading';
+import Number from './Number';
 
 export {
   Header,
@@ -30,4 +31,5 @@ export {
   ItemListMenu,
   TextError,
   Loading,
+  Number,
 };

@@ -1,47 +1,45 @@
 import {StyleSheet, Text, View, Dimensions, ScrollView} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import ItemListFood from '../ItemListFood';
 import {Food1} from '../../../assets';
 import {} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {getFoodDataByTypes} from '../../../redux/action/HomeAction';
 
 const NewTaste = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const storeData = useSelector(store => store?.home);
+  const {newTaste} = storeData;
+
+  // console.log(newTaste);
+
+  useEffect(() => {
+    const getNewTaste = async () => {
+      dispatch(await getFoodDataByTypes('new_food'));
+    };
+
+    getNewTaste();
+  }, [dispatch]);
 
   return (
     <View style={styles.page}>
       <ScrollView>
-        <ItemListFood
-          image={Food1}
-          onPress={() => navigation.navigate('FoodDetail')}
-          rating={4.6}
-          padding={24}
-        />
-        <ItemListFood
-          image={Food1}
-          onPress={() => navigation.navigate('FoodDetail')}
-          rating={4.6}
-          padding={24}
-        />
-        <ItemListFood
-          image={Food1}
-          onPress={() => navigation.navigate('FoodDetail')}
-          rating={4.6}
-          padding={24}
-        />
-        <ItemListFood
-          image={Food1}
-          onPress={() => navigation.navigate('FoodDetail')}
-          rating={4.6}
-          padding={24}
-        />
-        <ItemListFood
-          image={Food1}
-          onPress={() => navigation.navigate('FoodDetail')}
-          rating={4.6}
-          padding={24}
-        />
+        {newTaste?.map((row, key) => {
+          return (
+            <ItemListFood
+              key={key}
+              type="product"
+              image={{uri: row?.picturePath}}
+              name={row?.name}
+              price={row?.price}
+              rating={row?.rate}
+              padding={24}
+            />
+          );
+        })}
       </ScrollView>
     </View>
   );
@@ -49,34 +47,36 @@ const NewTaste = () => {
 
 const Popular = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const storeData = useSelector(store => store?.home);
+  const {popular} = storeData;
+
+  // console.log(newTaste);
+
+  useEffect(() => {
+    const getNewTaste = async () => {
+      dispatch(await getFoodDataByTypes('popular'));
+    };
+
+    getNewTaste();
+  }, [dispatch]);
 
   return (
     <View style={styles.page}>
       <ScrollView>
-        <ItemListFood
-          image={Food1}
-          onPress={() => navigation.navigate('FoodDetail')}
-          rating={4.6}
-          padding={24}
-        />
-        <ItemListFood
-          image={Food1}
-          onPress={() => navigation.navigate('FoodDetail')}
-          rating={4.6}
-          padding={24}
-        />
-        <ItemListFood
-          image={Food1}
-          onPress={() => navigation.navigate('FoodDetail')}
-          rating={4.6}
-          padding={24}
-        />
-        <ItemListFood
-          image={Food1}
-          onPress={() => navigation.navigate('FoodDetail')}
-          rating={4.6}
-          padding={24}
-        />
+        {popular?.map((row, key) => {
+          return (
+            <ItemListFood
+              key={key}
+              type="product"
+              image={{uri: row?.picturePath}}
+              name={row?.name}
+              price={row?.price}
+              rating={row?.rate}
+              padding={24}
+            />
+          );
+        })}
       </ScrollView>
     </View>
   );
@@ -84,29 +84,35 @@ const Popular = () => {
 
 const Recommended = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const storeData = useSelector(store => store?.home);
+  const {recommended} = storeData;
+
+  useEffect(() => {
+    const getNewTaste = async () => {
+      dispatch(await getFoodDataByTypes('recommended'));
+    };
+
+    getNewTaste();
+  }, [dispatch]);
 
   return (
     <View style={styles.page}>
       <View style={styles.itemListContainer}>
         <ScrollView>
-          <ItemListFood
-            image={Food1}
-            onPress={() => navigation.navigate('FoodDetail')}
-            rating={4.6}
-            padding={24}
-          />
-          <ItemListFood
-            image={Food1}
-            onPress={() => navigation.navigate('FoodDetail')}
-            rating={4.6}
-            padding={24}
-          />
-          <ItemListFood
-            image={Food1}
-            onPress={() => navigation.navigate('FoodDetail')}
-            rating={4.6}
-            padding={24}
-          />
+          {recommended?.map((row, key) => {
+            return (
+              <ItemListFood
+                key={key}
+                type="product"
+                image={{uri: row?.picturePath}}
+                name={row?.name}
+                price={row?.price}
+                rating={row?.rate}
+                padding={24}
+              />
+            );
+          })}
         </ScrollView>
       </View>
     </View>

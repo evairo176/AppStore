@@ -25,7 +25,6 @@ const Home = () => {
   const storeData = useSelector(store => store?.home);
   const {food} = storeData;
 
-  console.log(food);
   useEffect(() => {
     dispatch(getFoodData());
   }, [dispatch]);

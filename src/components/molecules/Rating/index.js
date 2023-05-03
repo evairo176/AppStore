@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {ActiveStar, Star} from '../../../assets';
 import {Gap} from '../../atoms';
+import {Number} from '..';
 
 const Rating = ({rating}) => {
   const renderStars = () => {
@@ -21,7 +22,7 @@ const Rating = ({rating}) => {
     <View style={styles.ratingContainer}>
       <View style={styles.starContainer}>{renderStars()}</View>
       <Gap width={10} />
-      <Text style={styles.nilai}>{rating}</Text>
+      <Number style={styles.nilai} number={rating} type="decimal" />
     </View>
   );
 };
