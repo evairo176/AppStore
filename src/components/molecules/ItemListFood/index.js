@@ -29,7 +29,7 @@ const ItemListFood = ({
                 <Text style={styles.title}>{name}</Text>
                 <Number style={styles.price} number={price} />
               </View>
-              <Rating rating={rating} />
+              <Rating rating={rating} type="decimal" />
             </View>
           </>
         );

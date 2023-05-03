@@ -1,15 +1,25 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {Add, Min} from '../../../assets';
 
-const Counter = () => {
+const Counter = ({setItems, items}) => {
+  const increase = () => {
+    setItems(items + 1);
+  };
+
+  const decrease = () => {
+    if (items > 1) {
+      setItems(items - 1);
+    }
+  };
+
   return (
     <View style={styles.counterContainer}>
-      <TouchableOpacity activeOpacity={0.6}>
+      <TouchableOpacity onPress={() => decrease()} activeOpacity={0.6}>
         <Min />
       </TouchableOpacity>
-      <Text style={styles.counterValue}>14</Text>
-      <TouchableOpacity activeOpacity={0.6}>
+      <Text style={styles.counterValue}>{items}</Text>
+      <TouchableOpacity activeOpacity={0.6} onPress={() => increase()}>
         <Add />
       </TouchableOpacity>
     </View>

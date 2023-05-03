@@ -4,7 +4,7 @@ import {ActiveStar, Star} from '../../../assets';
 import {Gap} from '../../atoms';
 import {Number} from '..';
 
-const Rating = ({rating}) => {
+const Rating = ({rating, type}) => {
   const renderStars = () => {
     let stars = [];
 
@@ -22,7 +22,7 @@ const Rating = ({rating}) => {
     <View style={styles.ratingContainer}>
       <View style={styles.starContainer}>{renderStars()}</View>
       <Gap width={10} />
-      <Number style={styles.nilai} number={rating} type="decimal" />
+      <Number style={styles.nilai} number={rating} type={type} />
     </View>
   );
 };

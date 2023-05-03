@@ -2,7 +2,7 @@ import {StyleSheet, Text} from 'react-native';
 import React from 'react';
 import {NumericFormat} from 'react-number-format';
 
-const index = ({number, type}) => {
+const index = ({number, type, style}) => {
   if (type === 'decimal') {
     return (
       <NumericFormat
@@ -11,8 +11,7 @@ const index = ({number, type}) => {
         decimalScale={1}
         displayType="text"
         fixedDecimalScale
-        prefix="IDR "
-        renderText={value => <Text>{value}</Text>}
+        renderText={value => <Text style={style}>{value}</Text>}
       />
     );
   } else {
@@ -23,7 +22,7 @@ const index = ({number, type}) => {
         decimalSeparator=","
         displayType="text"
         prefix="IDR "
-        renderText={value => <Text>{value}</Text>}
+        renderText={value => <Text style={style}>{value}</Text>}
       />
     );
   }

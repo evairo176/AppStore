@@ -20,7 +20,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getFoodData} from '../../redux/action/HomeAction';
 import store from '../../redux/store/store';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const dispatch = useDispatch();
   const storeData = useSelector(store => store?.home);
   const {food} = storeData;
@@ -40,6 +40,7 @@ const Home = () => {
             {food?.map((row, key) => {
               return (
                 <FoodCard
+                  onPress={() => navigation.navigate('FoodDetail', row)}
                   key={key}
                   name={row?.name}
                   image={{uri: row?.picturePath}}
